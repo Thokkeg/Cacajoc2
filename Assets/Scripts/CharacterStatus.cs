@@ -21,8 +21,17 @@ public class CharacterStatus : MonoBehaviour
         actualMov = baseValues[3];
         actualInit = baseValues[4];
         actualRange = character.charClass.range;
+        printInfo();
+    }
+
+    void Update()
+    {
+               
+    }
+    void printInfo()
+    {
         Debug.Log(
-            "<color=red>Name:</color> " + character.baseName + 
+            "<color=red>Name:</color> " + character.getBaseName() +
             ", <color=red>HP:</color> " + actualHP +
             ", <color=red>DEF:</color> " + actualDef +
             ", <color=red>ATT:</color> " + actualAtt +
@@ -30,10 +39,5 @@ public class CharacterStatus : MonoBehaviour
             ", <color=red>INIT:</color> " + actualInit +
             ", <color=red>RANGE:</color> " + actualRange
             );
-    }
-
-    void Update()
-    {
-               
     }
 }

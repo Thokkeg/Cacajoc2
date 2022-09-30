@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffdd742e56dd04e47af61351bf702457, type: 3}
-  m_Name: GoblinArquero
+  m_Script: {fileID: 11500000, guid: f4d991de9b24b4a4886d08842282bf87, type: 3}
+  m_Name: Mago
   m_EditorClassIdentifier: 
-  baseName: Goblin Arquero
-  basicEnte: {fileID: 0}
-  charClass: {fileID: 0}
-  charSpecies: {fileID: 0}
+  HP: -10
+  Def: 0
+  Att: 2
+  Mov: 0
+  Init: -1
+  range: 2
