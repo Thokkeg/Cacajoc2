@@ -1,6 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class MovementManager : MonoBehaviour
 {
@@ -10,7 +13,15 @@ public class MovementManager : MonoBehaviour
     public bool highlight_tiles = false;
     public GameObject playerCharMove;
     public GameObject tile2move;
+    public GameObject[] tiles;
+    public float speed = 3;
 
+    private PathFinding pathFinder;
+    private RangeFinder rangeFinder;
+    private List<Tile> path;
+    private List<Tile> inRangeTiles;
+    private float distanceX;
+    private float distanceY;
     private void Awake()
     {
         if (_instance == null)
@@ -22,18 +33,110 @@ public class MovementManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    void moveCharacter()
-    {
-        playerCharMove.transform.position = tile2move.transform.position;
-        playerCharMove = null;
-        tile2move = null;
-        highlight_tiles = false;
+
+        tiles = GameObject.FindGameObjectsWithTag("Tile");
     }
 
-
-    void Update()
+    private void Start()
     {
-        
+        pathFinder = new PathFinding();
+        rangeFinder = new RangeFinder();
+        path = new List<Tile>();
     }
+
+    void FixedUpdate()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            playerCharMove = null;
+            tile2move = null;
+            highlight_tiles = false;
+            foreach (GameObject tile in tiles)
+            {
+                tile.GetComponent<ClickTile>().stop_highlight();
+                tile.GetComponent<ClickTile>().CharCanMoveToTile = false;
+            }
+        }
+        if (path.Count > 0)
+        {
+            characterStep();
+        }
+    }
+
+    public void highlight_tiles2move()
+    {
+        GetInRangeTiles();
+
+    }
+    public void moveCharacter()
+    {
+        if (tile2move.GetComponent<ClickTile>().CharCanMoveToTile == true)
+        {
+
+            path = pathFinder.FindPath(
+                playerCharMove.GetComponent<MoveCharacter>().tile.GetComponent<Tile>(), 
+                tile2move.GetComponent<Tile>(), inRangeTiles);
+
+            
+            tile2move = null;
+            highlight_tiles = false;
+            foreach (GameObject tile in tiles)
+            {
+                tile.GetComponent<ClickTile>().stop_highlight();
+                tile.GetComponent<ClickTile>().CharCanMoveToTile = false;
+                tile.GetComponent<Tile>().ResetCosts();
+            }
+        }
+        else
+        {
+            Debug.Log("The tile is too far");
+            tile2move = null;
+        }
+    }
+
+    public void characterStep()
+    {
+        var step = speed * Time.deltaTime;
+        playerCharMove.transform.position = Vector2.MoveTowards(playerCharMove.transform.position, path[0].transform.position, step);
+        //float zIndex = path[0].transform.position.z;
+        playerCharMove.transform.position = new Vector3(playerCharMove.transform.position.x, playerCharMove.transform.position.y, -2);
+        if (Vector2.Distance(playerCharMove.transform.position, path[0].transform.position) <= 0)
+        {
+            PositionCharacterOnLine(path[0]);
+            path.RemoveAt(0);
+
+            if (path.Count <= 0)
+            {
+                //playerCharMove.transform.position = new Vector2(Mathf.RoundToInt(playerCharMove.transform.position.x), Mathf.RoundToInt(playerCharMove.transform.position.y));
+
+                playerCharMove = null;
+            }
+            
+        }
+    }
+    private void PositionCharacterOnLine(Tile tile)
+    {
+        playerCharMove.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, -2);
+        playerCharMove.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
+        playerCharMove.GetComponent<MoveCharacter>().tile = tile;
+    }
+
+    private void GetInRangeTiles()
+    {
+        inRangeTiles = rangeFinder.GetTilesInRange(new Vector2Int(playerCharMove.GetComponent<MoveCharacter>().tile.x, 
+            playerCharMove.GetComponent<MoveCharacter>().tile.y),
+            playerCharMove.GetComponent<MoveCharacter>().speed);
+
+        foreach (var item in inRangeTiles)
+        {
+            var path = pathFinder.FindPath(playerCharMove.GetComponent<MoveCharacter>().tile, item,inRangeTiles);
+            
+            if (item.gCost <= playerCharMove.GetComponent<MoveCharacter>().speed && item.isBlocked == false && item.gCost != 0)
+            {
+                item.highlight();
+                item.GetComponent<ClickTile>().CharCanMoveToTile = true;
+            }
+        }
+    }
+    
 }

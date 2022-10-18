@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,7 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
-    
+    public bool canClick = true;
 
     private void Awake()
     {
@@ -24,12 +22,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        
+        if (Input.GetKeyDown("space"))
+        {
+            print("space key was pressed");
+        }
+
     }
 }

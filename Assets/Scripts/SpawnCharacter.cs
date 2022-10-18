@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnCharacter : MonoBehaviour
@@ -10,12 +8,14 @@ public class SpawnCharacter : MonoBehaviour
 
     void Start()
     {
-        Instantiate(character, GameObject.Find("x:" + positionX + " " + "y:" + positionY).transform.position, Quaternion.identity);
+        GameObject MyCharacter = Instantiate(character, GameObject.Find("x:" + positionX + " " + "y:" + positionY).transform.position, Quaternion.identity);
+        MyCharacter.GetComponent<MoveCharacter>().tile = GameObject.Find("x:" + positionX + " " + "y:" + positionY).GetComponent<Tile>();
+        MyCharacter.transform.parent = GameObject.Find("Characters").transform;
 
     }
 
     void Update()
     {
-        
+
     }
 }
