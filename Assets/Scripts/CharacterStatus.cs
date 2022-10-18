@@ -37,7 +37,8 @@ public class CharacterStatus : MonoBehaviour
             ", <color=red>ATT:</color> " + actualAtt +
             ", <color=red>MOV:</color> " + actualMov +
             ", <color=red>INIT:</color> " + actualInit +
-            ", <color=red>RANGE:</color> " + actualRange
-            );
+            ", <color=red>RANGE:</color> " + actualRange +
+            ", <color=red>VALUE:</color> " + character.getCostValue()
+           );
     }
 }

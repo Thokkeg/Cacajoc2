@@ -11,4 +11,5 @@ public class Ente : ScriptableObject
     public float Att;
     public float Mov;
     public float Init;
+    public float Value;
 }

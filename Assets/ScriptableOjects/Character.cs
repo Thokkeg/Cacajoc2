@@ -9,6 +9,7 @@ public class Character : ScriptableObject
     public Ente basicEnte;
     public Class charClass;
     public Species charSpecies;
+    public float valueBalance;
 
     public float[] calculateBaseValues(float level)
     {
@@ -23,6 +24,11 @@ public class Character : ScriptableObject
     }
     public string getBaseName()
     {
-        return ((charSpecies.name.ToLower().Equals("default"))? "":charSpecies.name) + " " + ((charClass.name.ToLower().Equals("default")) ? "" : charClass.name);
+        return ((charSpecies.name.ToLower().Equals("default") || charSpecies.name.ToLower().Equals("especial")) ? "":charSpecies.name) + " " + ((charClass.name.ToLower().Equals("default") || charClass.name.ToLower().Equals("especial")) ? "" : charClass.name);
+    }
+    public float getCostValue()
+    {
+        float finalCost = basicEnte.Value + charClass.Value + charSpecies.Value;
+        return finalCost;
     }
 }
