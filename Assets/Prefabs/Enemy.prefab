@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 1573408961412771540}
   - component: {fileID: 9059485392587264655}
   - component: {fileID: -348226009499709240}
-  - component: {fileID: 3728815995827624750}
   m_Layer: 0
-  m_Name: Playable square
+  m_Name: Enemy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 93cd9d8a7f247c64fb982350c55c8846, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.42266536, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,17 +111,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3728815995827624750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4264405512401158391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5fc408de51f1b49aeedbe1046343e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  tile: {fileID: 0}
