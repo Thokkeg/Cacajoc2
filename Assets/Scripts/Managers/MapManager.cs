@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour
             if (tile.GetComponent<Tile>() != null)
             {
                 //Debug.Log(tile.name);
-                map.Add(new Vector2Int(tile.GetComponent<Tile>().x, tile.GetComponent<Tile>().y), tile.gameObject.GetComponent<Tile>());
+                map.Add(new Vector2Int(tile.GetComponent<Tile>().x, tile.GetComponent<Tile>().y), tile.GetComponent<Tile>());
 
                 //Debug.Log(tile.GetComponent<Tile>());
             }

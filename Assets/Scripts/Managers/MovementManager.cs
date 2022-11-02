@@ -44,7 +44,8 @@ public class MovementManager : MonoBehaviour
         path = new List<Tile>();
     }
 
-    void FixedUpdate()
+    // Clickar el click dret deselecciona el personatge escollit
+    private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
@@ -57,17 +58,26 @@ public class MovementManager : MonoBehaviour
                 tile.GetComponent<ClickTile>().CharCanMoveToTile = false;
             }
         }
+    }
+
+    // Fixet update per moure el personatge cada frame
+    void FixedUpdate()
+    {
         if (path.Count > 0)
         {
             characterStep();
         }
     }
 
+    // Funcio que crida a iluminar les tiles en las que et pots moure
     public void highlight_tiles2move()
     {
         GetInRangeTiles();
 
     }
+
+    // Si amb un personatge escollit clickes una tile en la que et pots moure fa la funcio de que es mogui,
+    // si no es pot el joc ho ha de avisar
     public void moveCharacter()
     {
         if (tile2move.GetComponent<ClickTile>().CharCanMoveToTile == true)
@@ -94,6 +104,7 @@ public class MovementManager : MonoBehaviour
         }
     }
 
+    //Cada pas del moviment de un character
     public void characterStep()
     {
         var step = speed * Time.deltaTime;
@@ -121,6 +132,7 @@ public class MovementManager : MonoBehaviour
         playerCharMove.GetComponent<MoveCharacter>().tile = tile;
     }
 
+    //Agada totes les tiles en el rang del personatge escollit
     private void GetInRangeTiles()
     {
         inRangeTiles = rangeFinder.GetTilesInRange(new Vector2Int(playerCharMove.GetComponent<MoveCharacter>().tile.x, 

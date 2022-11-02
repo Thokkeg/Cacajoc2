@@ -29,6 +29,12 @@ public class Tile : MonoBehaviour
         x = Mathf.RoundToInt(gameObject.transform.localPosition.x);
         y = Mathf.RoundToInt(gameObject.transform.localPosition.y);
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
+
+        if (isBlocked == true)
+        {
+            gameObject.transform.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
     }
 
     public void SetTile()

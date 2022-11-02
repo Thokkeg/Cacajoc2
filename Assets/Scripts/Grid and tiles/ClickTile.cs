@@ -35,8 +35,6 @@ public class ClickTile : MonoBehaviour
 
     }
 
-    
-
     public void stop_highlight()
     {
         gameObject.transform.GetComponent<SpriteRenderer>().color = gameObject.GetComponent<Tile>().originalColor;
