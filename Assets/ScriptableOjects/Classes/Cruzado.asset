@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d991de9b24b4a4886d08842282bf87, type: 3}
+  m_Name: Cruzado
+  m_EditorClassIdentifier: 
+  Name: Cruzado
+  HP: 5
+  Def: 2
+  Att: -1
+  Mov: -1
+  Init: 0
+  range: 1
