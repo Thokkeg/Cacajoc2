@@ -40,7 +40,7 @@ public class MovementManager : MonoBehaviour
     private void Start()
     {
         pathFinder = new PathFinding();
-        rangeFinder = new RangeFinder();
+        //rangeFinder = new RangeFinder();
         path = new List<Tile>();
     }
 
@@ -121,6 +121,7 @@ public class MovementManager : MonoBehaviour
                 //playerCharMove.transform.position = new Vector2(Mathf.RoundToInt(playerCharMove.transform.position.x), Mathf.RoundToInt(playerCharMove.transform.position.y));
 
                 playerCharMove = null;
+                TurnManager.Instance.NextTurn();
             }
             
         }
@@ -133,12 +134,14 @@ public class MovementManager : MonoBehaviour
     }
 
     //Agada totes les tiles en el rang del personatge escollit
-    private void GetInRangeTiles()
+    public void GetInRangeTiles()
     {
-        inRangeTiles = rangeFinder.GetTilesInRange(new Vector2Int(playerCharMove.GetComponent<MoveCharacter>().tile.x, 
+        rangeFinder = new RangeFinder();
+        //Debug.Log(playerCharMove);
+        inRangeTiles = rangeFinder.GetTilesInRange(new Vector2Int(playerCharMove.GetComponent<MoveCharacter>().tile.x,
             playerCharMove.GetComponent<MoveCharacter>().tile.y),
             playerCharMove.GetComponent<MoveCharacter>().speed);
-
+        //Debug.Log(playerCharMove);
         foreach (var item in inRangeTiles)
         {
             var path = pathFinder.FindPath(playerCharMove.GetComponent<MoveCharacter>().tile, item,inRangeTiles);

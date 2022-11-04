@@ -7,13 +7,19 @@ public class MoveCharacter : MonoBehaviour
     public Tile tile;
     private void OnMouseDown()
     {
-        Debug.Log("click "+ gameObject.name);
-        MovementManager.Instance.playerCharMove = gameObject;
-        MovementManager.Instance.highlight_tiles = true;
-        MovementManager.Instance.highlight_tiles2move();
+        //Debug.Log("click "+ gameObject.name);
+        //MovementManager.Instance.playerCharMove = gameObject;
+        //MovementManager.Instance.highlight_tiles = true;
+        //MovementManager.Instance.highlight_tiles2move();
 
     }
 
+    public void setCharacter2Move()
+    {
+        MovementManager.Instance.playerCharMove = gameObject;
+        MovementManager.Instance.highlight_tiles = true;
+        MovementManager.Instance.GetInRangeTiles();
+    }
     void Start()
     {
 

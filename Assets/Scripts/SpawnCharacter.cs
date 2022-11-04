@@ -11,7 +11,7 @@ public class SpawnCharacter : MonoBehaviour
         GameObject MyCharacter = Instantiate(character, GameObject.Find("x:" + positionX + " " + "y:" + positionY).transform.position, Quaternion.identity);
         MyCharacter.GetComponent<MoveCharacter>().tile = GameObject.Find("x:" + positionX + " " + "y:" + positionY).GetComponent<Tile>();
         MyCharacter.transform.parent = GameObject.Find("Characters").transform;
-
+        
     }
 
     void Update()

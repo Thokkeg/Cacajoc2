@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RangeFinder : MonoBehaviour
+public class RangeFinder 
 {
     public List<Tile> GetTilesInRange(Vector2Int location, int range)
     {
