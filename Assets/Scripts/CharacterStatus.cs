@@ -28,17 +28,20 @@ public class CharacterStatus : MonoBehaviour
     {
                
     }
-    void printInfo()
+    void printInfo(string extra="")
     {
-        Debug.Log(
-            "<color=red>Name:</color> " + character.getBaseName() +
+        string toPrintText = "<color=red>Name:</color> " + character.getBaseName() +
             ", <color=red>HP:</color> " + actualHP +
             ", <color=red>DEF:</color> " + actualDef +
             ", <color=red>ATT:</color> " + actualAtt +
             ", <color=red>MOV:</color> " + actualMov +
             ", <color=red>INIT:</color> " + actualInit +
             ", <color=red>RANGE:</color> " + actualRange +
-            ", <color=red>VALUE:</color> " + character.getCostValue()
-           );
+            ", <color=red>VALUE:</color> " + character.getCostValue();
+        if (!extra.Equals(""))
+        {
+            toPrintText += ", <color=red>EXTRA:</color> " + extra;
+        }
+        Debug.Log(toPrintText);
     }
 }

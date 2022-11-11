@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3549a54b40273594b997df2eadb13c9b, type: 3}
   m_Name: Humano
   m_EditorClassIdentifier: 
-  Name: 
   HP: 0
   Def: 0
   Att: 0
   Mov: 0
   Init: 0
+  Value: 3

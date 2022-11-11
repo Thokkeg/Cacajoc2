@@ -31,4 +31,21 @@ public class Character : ScriptableObject
         float finalCost = basicEnte.Value + charClass.Value + charSpecies.Value;
         return finalCost;
     }
+    public void printDefaultInfo(string extra ="")
+    {
+        float[] baseValues = calculateBaseValues(0);
+        string toPrintText = "<color=red>Name:</color> " + getBaseName() +
+            ", <color=red>HP:</color> " + baseValues[0] +
+            ", <color=red>DEF:</color> " + baseValues[1] +
+            ", <color=red>ATT:</color> " + baseValues[2] +
+            ", <color=red>MOV:</color> " + baseValues[3] +
+            ", <color=red>INIT:</color> " + baseValues[4] +
+            ", <color=red>RANGE:</color> " + charClass.range +
+            ", <color=red>VALUE:</color> " + getCostValue();
+        if (!extra.Equals(""))
+        {
+            toPrintText += ", <color=red>EXTRA:</color> " + extra;
+        }
+        Debug.Log(toPrintText);
+    }
 }

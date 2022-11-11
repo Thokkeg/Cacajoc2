@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3549a54b40273594b997df2eadb13c9b, type: 3}
-  m_Name: Demonio
+  m_Name: Esqueleto
   m_EditorClassIdentifier: 
-  Name: 
-  HP: 0
+  HP: 5
   Def: 0
   Att: 0
-  Mov: 0
-  Init: 0
+  Mov: -1
+  Init: -1
+  Value: 2

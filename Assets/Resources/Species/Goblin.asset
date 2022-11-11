@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3549a54b40273594b997df2eadb13c9b, type: 3}
-  m_Name: Dragon
+  m_Name: Goblin
   m_EditorClassIdentifier: 
-  Name: 
-  HP: 0
-  Def: 0
-  Att: 0
-  Mov: 0
+  HP: -10
+  Def: -1
+  Att: -1
+  Mov: 1
   Init: 0
+  Value: 1
